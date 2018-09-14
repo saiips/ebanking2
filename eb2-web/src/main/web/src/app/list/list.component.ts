@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Http, Headers } from '@angular/http';
-import { map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+// import { Router, ActivatedRoute } from '@angular/router';
+// import { Http, Headers } from '@angular/http';
+// import { map } from 'rxjs/operators';
+import { UserService } from '../_services';
+import { Courses } from '../_models';
 
 @Component({
   selector: 'app-list',
@@ -9,29 +12,19 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  courses: Courses[] = [];
 
-  courses: string[];
-  token: string;
+  constructor(private userService: UserService) {}  
 
   ngOnInit(): void {
-    console.log("ngOnInit");
-  }  
+    console.log("ListComponent::ngOnInit");
+    this.userService.getCourses().pipe(first()).subscribe(courses => { 
+      this.courses = courses; 
+  });
+      
+      
+  };    
 
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute, 
-              private http: Http) {
-                
-    console.log(http);
-    
-    let headers = new Headers();
-    this.http.get('/api/courses', { headers : headers})
-      .pipe(map(res => res.json()))
-      .subscribe(
-        courses => this.courses = courses,
-        err => console.log(err)
-      );
-
-  }
-
+   
 
 }
