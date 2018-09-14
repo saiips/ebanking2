@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dsb.eb2</groupId>
+    <artifactId>eb2</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>cas-server</module>
+        <module>eb2-web</module>
+        <module>eb2-server</module>        
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <description>
+        DSB E-Banking 2 (Revamp Project)
+    </description>
+
+    <properties>
+    	<java.version>1.8</java.version>
+        <cas.version>5.3.2</cas.version>
+        <springboot.version>1.5.14.RELEASE</springboot.version>
+        <!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver -->
+        <app.server></app.server>
+		
+		<startClass>org.apereo.cas.web.CasWebApplication</startClass>
+        <mainClassName>org.springframework.boot.loader.WarLauncher</mainClassName>
+        <isExecutable>false</isExecutable>
+        <manifestFileToUse>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF</manifestFileToUse>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <shiro.version>1.4.0</shiro.version>
+        <buji.version>3.0.0</buji.version>
+        <pac4j.version>3.1.0</pac4j.version>
+        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>     
+    </properties>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <id>maven2-release</id>
+            <url>http://uk.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:120</updatePolicy>
+            </snapshots>
+            <id>oss-snapshots</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <id>maven2-release</id>
+            <url>http://uk.maven.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source> 
+                    <target>${maven.compiler.target}</target> 
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>    
+
+</project>
