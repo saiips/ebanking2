@@ -1,0 +1,70 @@
+
+<h1>Customers</h1>
+
+<!-- {{customers | json}} -->
+
+<div class="table-responsive">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>customerID</th>
+				<th>ebid</th>
+				<th>fullName</th>
+				<th>title</th>
+				<th>sex</th>
+				<th>dob</th>
+				<th>mobileNo</th>
+				<th>optIn</th>
+				<th>permEmail</th>
+				<th>tempEmail</th>
+				<th>lastUpdDateEmail</th>
+				<th>lastUpdByEmail</th>
+				<th>skipEmailUpdProcess</th>
+				<th>ebankType</th>
+				<th>staffInd</th>
+				<th>frstRegDate</th>
+				<th>reRegDate</th>
+				<th>lstLogonSuccDate</th>
+				<th>loginFailCnt</th>
+				<th>lastLoginFailDate</th>
+				<th>bioRemdrFlg</th>
+				<th>bioRemdrDate</th>
+				<th>status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let customer of customers">
+				<td>{{customer.customerID}}</td>
+				<td>{{customer.ebid}}</td>
+				<td>{{customer.fullName}}</td>
+				<td>{{customer.title}}</td>
+				<td>{{customer.sex}}</td>
+				<td>{{customer.dob}}</td>
+				<td>{{customer.mobileNo}}</td>
+				<td>{{customer.optIn}}</td>
+				<td>{{customer.permEmail}}</td>
+				<td>{{customer.tempEmail}}</td>
+				<td>{{customer.lastUpdDateEmail}}</td>
+				<td>{{customer.lastUpdByEmail}}</td>
+				<td>{{customer.skipEmailUpdProcess}}</td>
+				<td>{{customer.ebankType}}</td>
+				<td>{{customer.staffInd}}</td>
+				<td>{{customer.frstRegDate}}</td>
+				<td>{{customer.reRegDate}}</td>
+				<td>{{customer.lstLogonSuccDate}}</td>
+				<td>{{customer.loginFailCnt}}</td>
+				<td>{{customer.lastLoginFailDate}}</td>
+				<td>{{customer.bioRemdrFlg}}</td>
+				<td>{{customer.bioRemdrDate}}</td>
+				<td>{{customer.status}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<p>
+	<a [routerLink]="['/list']" routerLinkActive="active">List</a>
+</p>
+<p>
+	<a [routerLink]="['/login']" routerLinkActive="active">Logout</a>
+</p>
