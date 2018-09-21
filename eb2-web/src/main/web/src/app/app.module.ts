@@ -3,26 +3,29 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
-import { routing }        from './app.routing';
+import { AppRoutingModule }        from './app.routing';
 import { fakeBackendProvider } from './_helpers';
 import { JwtInterceptor, ErrorInterceptor, getBaseUrl } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { ListComponent } from './list';
+import { CustomersComponent } from './customers';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ListComponent
+    ListComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    routing
+    AppRoutingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
