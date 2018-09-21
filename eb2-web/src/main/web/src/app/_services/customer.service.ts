@@ -9,7 +9,7 @@ export class CustomerService {
     constructor(private http: HttpClient,  @Inject('BASE_URL') private baseUrl: string) { }
 
     getCustomers(): Observable<Customer[]> {
-        return this.http.get<Customer[]>('/api/customers');
+        return this.http.get<Customer[]>(this.baseUrl + 'api/customers');
     }
 
 }
