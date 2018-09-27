@@ -3,6 +3,7 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
@@ -10,59 +11,35 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let testUser = { id: 1, username: 'test', password: 'test', firstName: 'Peter', lastName: 'Tam' };
-        let testCustomer= [
-  {
-    "customerID": "5ba376fa85b6eef63bcf7402",
-    "ebid": "048cb8a8-0918-4bb8-8035-df8994b4a9fc",
-    "fullName": "Mcdaniel Franklin",
-    "title": "Mr.",
-    "sex": "M",
-    "dob": "2018-01-30",
-    "mobileNo": "+852 (923) 560-3017",
-    "optIn": true,
-    "permEmail": "email@email.com",
-    "tempEmail": "email@email.com",
-    "lastUpdDateEmail": "2014-07-07",
-    "lastUpdByEmail": "email@email.com",
-    "skipEmailUpdProcess": true,
-    "ebankType": false,
-    "staffInd": false,
-    "frstRegDate": "2016-11-29",
-    "reRegDate": "2016-04-09",
-    "lstLogonSuccDate": "2017-02-24",
-    "loginFailCnt": 14,
-    "lastLoginFailDate": "2016-05-05",
-    "bioRemdrFlg": false,
-    "bioRemdrDate": "2015-02-13",
-    "status": true
-  },
-  {
-    "customerID": "5ba376fac6c1037b4118bc27",
-    "ebid": "530a5c02-9f41-4eb4-8d54-03f9c71d5755",
-    "fullName": "Conrad Pope",
-    "title": "Mr.",
-    "sex": "F",
-    "dob": "2014-05-29",
-    "mobileNo": "+852 (992) 476-2995",
-    "optIn": false,
-    "permEmail": "email@email.com",
-    "tempEmail": "email@email.com",
-    "lastUpdDateEmail": "2018-06-03",
-    "lastUpdByEmail": "email@email.com",
-    "skipEmailUpdProcess": false,
-    "ebankType": false,
-    "staffInd": false,
-    "frstRegDate": "2014-01-31",
-    "reRegDate": "2016-11-12",
-    "lstLogonSuccDate": "2017-10-14",
-    "loginFailCnt": 9,
-    "lastLoginFailDate": "2016-06-18",
-    "bioRemdrFlg": true,
-    "bioRemdrDate": "2017-04-03",
-    "status": true
-  }
-]; 
+        let testCustomer = {
+            "CUST_ID" : 1,
+            "EBID" : 1,
+            "FULL_NAME" : "Dicky",
+            "TITLE" : "Test",
+            "SEX" : "M",
+            "DOB" : "2018-09-27T09:16:15.000-07:00",
+            "MOB_NUMBER" : "98765432",
+            "MOB_COUNTRY_CODE" : "HK",
+            "MOB_AREA_CODE" : "HK",
+            "OPT_IN" : "Y",
+            "PERM_EMAIL" : "dicky.tse@oracle.com",
+            "TEMP_EMAIL" : "dicky.tse@oracle.com",
+            "PERM_EMAIL_LAST_UPDATE_DATE" : "2018-09-27T09:16:52.000-07:00",
+            "PERM_EMAIL_LAST_UPDATE_BY" : "System",
+            "SKIP_EMAIL_UPDATE_PROCESS" : "1",
+            "EBANK_TYPE" : "N",
+            "STAFF_INDICATOR" : "N",
+            "FIRST_REGISTRATION_DATE" : "2018-09-27T09:17:20.000-07:00",
+            "RE_REGISTRATION_DATE" : "2018-09-27T09:17:24.000-07:00",
+            "LAST_LOGIN_SUCCESSFUL_DATE" : "2018-09-27T09:17:26.000-07:00",
+            "LOGIN_FAIL_COUNT" : 0,
+            "LAST_LOGIN_FAIL_DATE" : "2018-09-27T09:17:33.000-07:00",
+            "BIOMETRIC_REMINDER_FLAG" : "N",
+            "BIOMETRIC_REMINDER_DATE" : "2018-09-27T09:17:41.000-07:00",
+            "STATUS" : "ACTIVE"
+          };
           
+        
           
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
@@ -99,9 +76,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           
 
             // get customers
-            if (request.url.endsWith('/api/customers') && request.method === 'GET') {
-               return of(new HttpResponse({ status: 200, body: testCustomer}));
-            }
+            // if (request.url.endsWith('/api/customer/1') && request.method === 'GET') {
+            //     return of(new HttpResponse({ status: 200, body: testCustomer}));
+            // }
           
           
             // pass through any requests not handled above

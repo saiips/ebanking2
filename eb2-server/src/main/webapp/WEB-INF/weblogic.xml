@@ -8,6 +8,7 @@
             <wls:package-name>javax.websocket.*</wls:package-name>
             <wls:package-name>javax.websocket.server.*</wls:package-name>
             <wls:package-name>org.slf4j.*</wls:package-name>
+            <wls:package-name>org.springframework.*</wls:package-name>
         </wls:prefer-application-packages>
     </wls:container-descriptor>
 </wls:weblogic-web-app>
