@@ -1,4 +1,4 @@
-package com.dsb.eb2.springboot.controller;
+package com.dsb.eb2.api.rest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

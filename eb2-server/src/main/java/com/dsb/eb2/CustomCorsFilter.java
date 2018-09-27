@@ -1,4 +1,4 @@
-package com.dsb.eb2.springboot;
+package com.dsb.eb2;
 
 import java.util.Arrays;
 
