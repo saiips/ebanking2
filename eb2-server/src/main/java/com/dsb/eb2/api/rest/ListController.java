@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dsb.eb2.framework.controller.ApiController;
+import com.dsb.eb2.framework.log.Loggable;
 //import com.dsb.eb2.framework.aspect.BaseExecution;
 import com.dsb.eb2.model.Course;
 
 @RestController
 @RequestMapping(ApiController.API_PATH)
+@Loggable
 public class ListController extends ApiController {
 	
 	private final Log logger = LogFactory.getLog(this.getClass());
@@ -26,7 +28,6 @@ public class ListController extends ApiController {
 	@RequestMapping(value = "/courses", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public List<String> handleCoursesList() {
-		logger.info("it' works!!");
 		return COURSES;
 	}
 	

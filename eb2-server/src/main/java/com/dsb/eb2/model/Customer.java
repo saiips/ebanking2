@@ -1,292 +1,310 @@
 package com.dsb.eb2.model;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class Customer {
 
-public class Customer implements Serializable {
+	@JsonProperty("OUT_CUST_TAB")
+	private CustTab custTab;
 
-	private static final long serialVersionUID = 8240491955072365574L;
-	
-	private int customerID;
-    private int ebid;
-    private String fullName;
-    private String title;
-    private String sex;
-    private String dob;
-    private String mobileNo;
-    private String mobileCountryCode;
-    private String mobileAreaCode;
-    private String optIn;
-    private String permEmail;
-	private String tempEmail;
-    private String lastUpdDateEmail;
-    private String lastUpdByEmail;
-    private String skipEmailUpdProcess;
-    private String ebankType;
-    private String staffInd;
-    private String frstRegDate;
-    private String reRegDate;
-    private String lstLogonSuccDate;
-    private int loginFailCnt;
-    private String lastLoginFailDate;
-    private String bioRemdrFlg;
-    private String bioRemdrDate;
-    private String status;
-    
-
-
-    @JsonProperty("CUST_ID")
-	public int getCustomerID() {
-		return customerID;
+	public CustTab getCustTab() {
+		return custTab;
 	}
 
-    @JsonProperty("CUST_ID")
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
+	public void setCustTab(CustTab custTab) {
+		this.custTab = custTab;
 	}
 
-    @JsonProperty("EBID")
-	public int getEbid() {
-		return ebid;
+	public static class CustTab {
+
+		@JsonProperty("OUT_CUST_TAB_ITEM")
+		private CustTabItem custTabItem;
+
+		public CustTabItem getCustTabItem() {
+			return custTabItem;
+		}
+
+		public void setCustTabItem(CustTabItem custTabItem) {
+			this.custTabItem = custTabItem;
+		}
 	}
 
-    @JsonProperty("EBID")
-	public void setEbid(int ebid) {
-		this.ebid = ebid;
-	}
+	public static class CustTabItem {
 
-    @JsonProperty("FULL_NAME")
-	public String getFullName() {
-		return fullName;
-	}
+		@JsonProperty("CUST_ID")
+		private int customerID;
 
-    @JsonProperty("FULL_NAME")
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+		@JsonProperty("EBID")
+		private int ebid;
 
-    @JsonProperty("TITLE")
-	public String getTitle() {
-		return title;
-	}
+		@JsonProperty("FULL_NAME")
+		private String fullName;
 
-    @JsonProperty("TITLE")    
-	public void setTitle(String title) {
-		this.title = title;
-	}
+		@JsonProperty("TITLE")
+		private String title;
 
-    @JsonProperty("SEX")     
-	public String getSex() {
-		return sex;
-	}
-    
-    @JsonProperty("SEX")     
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+		@JsonProperty("SEX")
+		private String sex;
 
-    @JsonProperty("DOB")         
-	public String getDob() {
-		return dob;
-	}
+		@JsonProperty("DOB")
+		private String dob;
 
-    @JsonProperty("DOB")    
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
+		@JsonProperty("MOB_NUMBER")
+		private String mobileNo;
 
-    @JsonProperty("MOB_NUMBER")    
-	public String getMobileNo() {
-		return mobileNo;
-	}
+		@JsonProperty("MOB_COUNTRY_CODE")
+		private String mobileCountryCode;
 
-    @JsonProperty("MOB_NUMBER")
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-    
-    @JsonProperty("MOB_COUNTRY_CODE")
-    public String getMobileCountryCode() {
-		return mobileCountryCode;
-	}
-    
-    @JsonProperty("MOB_COUNTRY_CODE")
-	public void setMobileCountryCode(String mobileCountryCode) {
-		this.mobileCountryCode = mobileCountryCode;
-	}
+		@JsonProperty("MOB_AREA_CODE")
+		private String mobileAreaCode;
 
-	@JsonProperty("MOB_AREA_CODE")
-    public String getMobileAreaCode() {
-		return mobileAreaCode;
+		@JsonProperty("OPT_IN")
+		private String optIn;
+
+		@JsonProperty("PERM_EMAIL")
+		private String permEmail;
+
+		@JsonProperty("TEMP_EMAIL")
+		private String tempEmail;
+
+		@JsonProperty("PERM_EMAIL_LAST_UPDATE_DATE")
+		private String lastUpdDateEmail;
+
+		@JsonProperty("PERM_EMAIL_LAST_UPDATE_BY")
+		private String lastUpdByEmail;
+
+		@JsonProperty("SKIP_EMAIL_UPDATE_PROCESS")
+		private String skipEmailUpdProcess;
+
+		@JsonProperty("EBANK_TYPE")
+		private String ebankType;
+
+		@JsonProperty("STAFF_INDICATOR")
+		private String staffInd;
+
+		@JsonProperty("FIRST_REGISTRATION_DATE")
+		private String frstRegDate;
+
+		@JsonProperty("RE_REGISTRATION_DATE")
+		private String reRegDate;
+
+		@JsonProperty("LAST_LOGIN_SUCCESSFUL_DATE")
+		private String lstLogonSuccDate;
+
+		@JsonProperty("LOGIN_FAIL_COUNT")
+		private int loginFailCnt;
+
+		@JsonProperty("LAST_LOGIN_FAIL_DATE")
+		private String lastLoginFailDate;
+
+		@JsonProperty("BIOMETRIC_REMINDER_FLAG")
+		private String bioRemdrFlg;
+
+		@JsonProperty("BIOMETRIC_REMINDER_DATE")
+		private String bioRemdrDate;
+
+		@JsonProperty("STATUS")
+		private String status;
+
+		public int getCustomerID() {
+			return customerID;
+		}
+
+		public void setCustomerID(int customerID) {
+			this.customerID = customerID;
+		}
+
+		public int getEbid() {
+			return ebid;
+		}
+
+		public void setEbid(int ebid) {
+			this.ebid = ebid;
+		}
+
+		public String getFullName() {
+			return fullName;
+		}
+
+		public void setFullName(String fullName) {
+			this.fullName = fullName;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public String getSex() {
+			return sex;
+		}
+
+		public void setSex(String sex) {
+			this.sex = sex;
+		}
+
+		public String getDob() {
+			return dob;
+		}
+
+		public void setDob(String dob) {
+			this.dob = dob;
+		}
+
+		public String getMobileNo() {
+			return mobileNo;
+		}
+
+		public void setMobileNo(String mobileNo) {
+			this.mobileNo = mobileNo;
+		}
+
+		public String getMobileCountryCode() {
+			return mobileCountryCode;
+		}
+
+		public void setMobileCountryCode(String mobileCountryCode) {
+			this.mobileCountryCode = mobileCountryCode;
+		}
+
+		public String getMobileAreaCode() {
+			return mobileAreaCode;
+		}
+
+		public void setMobileAreaCode(String mobileAreaCode) {
+			this.mobileAreaCode = mobileAreaCode;
+		}
+
+		public String getOptIn() {
+			return optIn;
+		}
+
+		public void setOptIn(String optIn) {
+			this.optIn = optIn;
+		}
+
+		public String getPermEmail() {
+			return permEmail;
+		}
+
+		public void setPermEmail(String permEmail) {
+			this.permEmail = permEmail;
+		}
+
+		public String getTempEmail() {
+			return tempEmail;
+		}
+
+		public void setTempEmail(String tempEmail) {
+			this.tempEmail = tempEmail;
+		}
+
+		public String getLastUpdDateEmail() {
+			return lastUpdDateEmail;
+		}
+
+		public void setLastUpdDateEmail(String lastUpdDateEmail) {
+			this.lastUpdDateEmail = lastUpdDateEmail;
+		}
+
+		public String getLastUpdByEmail() {
+			return lastUpdByEmail;
+		}
+
+		public void setLastUpdByEmail(String lastUpdByEmail) {
+			this.lastUpdByEmail = lastUpdByEmail;
+		}
+
+		public String getSkipEmailUpdProcess() {
+			return skipEmailUpdProcess;
+		}
+
+		public void setSkipEmailUpdProcess(String skipEmailUpdProcess) {
+			this.skipEmailUpdProcess = skipEmailUpdProcess;
+		}
+
+		public String getEbankType() {
+			return ebankType;
+		}
+
+		public void setEbankType(String ebankType) {
+			this.ebankType = ebankType;
+		}
+
+		public String getStaffInd() {
+			return staffInd;
+		}
+
+		public void setStaffInd(String staffInd) {
+			this.staffInd = staffInd;
+		}
+
+		public String getFrstRegDate() {
+			return frstRegDate;
+		}
+
+		public void setFrstRegDate(String frstRegDate) {
+			this.frstRegDate = frstRegDate;
+		}
+
+		public String getReRegDate() {
+			return reRegDate;
+		}
+
+		public void setReRegDate(String reRegDate) {
+			this.reRegDate = reRegDate;
+		}
+
+		public String getLstLogonSuccDate() {
+			return lstLogonSuccDate;
+		}
+
+		public void setLstLogonSuccDate(String lstLogonSuccDate) {
+			this.lstLogonSuccDate = lstLogonSuccDate;
+		}
+
+		public int getLoginFailCnt() {
+			return loginFailCnt;
+		}
+
+		public void setLoginFailCnt(int loginFailCnt) {
+			this.loginFailCnt = loginFailCnt;
+		}
+
+		public String getLastLoginFailDate() {
+			return lastLoginFailDate;
+		}
+
+		public void setLastLoginFailDate(String lastLoginFailDate) {
+			this.lastLoginFailDate = lastLoginFailDate;
+		}
+
+		public String getBioRemdrFlg() {
+			return bioRemdrFlg;
+		}
+
+		public void setBioRemdrFlg(String bioRemdrFlg) {
+			this.bioRemdrFlg = bioRemdrFlg;
+		}
+
+		public String getBioRemdrDate() {
+			return bioRemdrDate;
+		}
+
+		public void setBioRemdrDate(String bioRemdrDate) {
+			this.bioRemdrDate = bioRemdrDate;
+		}
+
+		public String getStatus() {
+			return status;
+		}
+
+		public void setStatus(String status) {
+			this.status = status;
+		}
 	}
-
-    @JsonProperty("MOB_AREA_CODE")
-	public void setMobileAreaCode(String mobileAreaCode) {
-		this.mobileAreaCode = mobileAreaCode;
-	}    
-
-    @JsonProperty("OPT_IN")
-	public String getOptIn() {
-		return optIn;
-	}
-
-    @JsonProperty("OPT_IN")
-	public void setOptIn(String optIn) {
-		this.optIn = optIn;
-	}
-
-    @JsonProperty("PERM_EMAIL")
-	public String getPermEmail() {
-		return permEmail;
-	}
-
-    @JsonProperty("PERM_EMAIL")
-	public void setPermEmail(String permEmail) {
-		this.permEmail = permEmail;
-	}
-
-    @JsonProperty("TEMP_EMAIL")
-	public String getTempEmail() {
-		return tempEmail;
-	}
-
-    @JsonProperty("TEMP_EMAIL")
-	public void setTempEmail(String tempEmail) {
-		this.tempEmail = tempEmail;
-	}
-
-    @JsonProperty("PERM_EMAIL_LAST_UPDATE_DATE")
-	public String getLastUpdDateEmail() {
-		return lastUpdDateEmail;
-	}
-
-    @JsonProperty("PERM_EMAIL_LAST_UPDATE_DATE")
-	public void setLastUpdDateEmail(String lastUpdDateEmail) {
-		this.lastUpdDateEmail = lastUpdDateEmail;
-	}
-
-    @JsonProperty("PERM_EMAIL_LAST_UPDATE_BY")
-	public String getLastUpdByEmail() {
-		return lastUpdByEmail;
-	}
-
-    @JsonProperty("PERM_EMAIL_LAST_UPDATE_BY")
-	public void setLastUpdByEmail(String lastUpdByEmail) {
-		this.lastUpdByEmail = lastUpdByEmail;
-	}
-
-    @JsonProperty("SKIP_EMAIL_UPDATE_PROCESS")
-	public String getSkipEmailUpdProcess() {
-		return skipEmailUpdProcess;
-	}
-
-    @JsonProperty("SKIP_EMAIL_UPDATE_PROCESS")
-	public void setSkipEmailUpdProcess(String skipEmailUpdProcess) {
-		this.skipEmailUpdProcess = skipEmailUpdProcess;
-	}
-
-    @JsonProperty("EBANK_TYPE")
-	public String getEbankType() {
-		return ebankType;
-	}
-
-    @JsonProperty("EBANK_TYPE")
-	public void setEbankType(String ebankType) {
-		this.ebankType = ebankType;
-	}
-
-    @JsonProperty("STAFF_INDICATOR")
-	public String getStaffInd() {
-		return staffInd;
-	}
-
-    @JsonProperty("STAFF_INDICATOR")
-	public void setStaffInd(String staffInd) {
-		this.staffInd = staffInd;
-	}
-
-    @JsonProperty("FIRST_REGISTRATION_DATE")
-	public String getFrstRegDate() {
-		return frstRegDate;
-	}
-
-    @JsonProperty("FIRST_REGISTRATION_DATE")
-	public void setFrstRegDate(String frstRegDate) {
-		this.frstRegDate = frstRegDate;
-	}
-
-    @JsonProperty("RE_REGISTRATION_DATE")
-	public String getReRegDate() {
-		return reRegDate;
-	}
-
-    @JsonProperty("RE_REGISTRATION_DATE")
-	public void setReRegDate(String reRegDate) {
-		this.reRegDate = reRegDate;
-	}
-
-    @JsonProperty("LAST_LOGIN_SUCCESSFUL_DATE")
-	public String getLstLogonSuccDate() {
-		return lstLogonSuccDate;
-	}
-
-    @JsonProperty("LAST_LOGIN_SUCCESSFUL_DATE")
-	public void setLstLogonSuccDate(String lstLogonSuccDate) {
-		this.lstLogonSuccDate = lstLogonSuccDate;
-	}
-
-    @JsonProperty("LOGIN_FAIL_COUNT")
-	public int getLoginFailCnt() {
-		return loginFailCnt;
-	}
-
-    @JsonProperty("LOGIN_FAIL_COUNT")
-	public void setLoginFailCnt(int loginFailCnt) {
-		this.loginFailCnt = loginFailCnt;
-	}
-
-    @JsonProperty("LAST_LOGIN_FAIL_DATE")
-	public String getLastLoginFailDate() {
-		return lastLoginFailDate;
-	}
-
-    @JsonProperty("LAST_LOGIN_FAIL_DATE")
-	public void setLastLoginFailDate(String lastLoginFailDate) {
-		this.lastLoginFailDate = lastLoginFailDate;
-	}
-
-    @JsonProperty("BIOMETRIC_REMINDER_FLAG")
-	public String getBioRemdrFlg() {
-		return bioRemdrFlg;
-	}
-
-    @JsonProperty("BIOMETRIC_REMINDER_FLAG")
-	public void setBioRemdrFlg(String bioRemdrFlg) {
-		this.bioRemdrFlg = bioRemdrFlg;
-	}
-
-    @JsonProperty("BIOMETRIC_REMINDER_DATE")
-	public String getBioRemdrDate() {
-		return bioRemdrDate;
-	}
-
-    @JsonProperty("BIOMETRIC_REMINDER_DATE")
-	public void setBioRemdrDate(String bioRemdrDate) {
-		this.bioRemdrDate = bioRemdrDate;
-	}
-
-    @JsonProperty("STATUS")
-	public String getStatus() {
-		return status;
-	}
-
-    @JsonProperty("STATUS")
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-    
 
 }
