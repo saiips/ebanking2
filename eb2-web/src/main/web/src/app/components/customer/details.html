@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col s10 offset-s1">
+        <h5 *ngIf="customer?.value?.name">{{ 'customerDetails.headers.update' | translate : {name: customer?.value?.name} }} </h5>
+        <h5 *ngIf="!customer?.value?.name"[translate]>customerDetails.headers.new</h5>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col s10 offset-s1">
+        <form noactive (ngSubmit)="saveCustomer(customer.value)" [formGroup]="customer">
+            <input type="hidden" formControlName="id"/>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="{{'customerDetails.fields.name.placeholder' | translate}}" type="text" formControlName="name" id="name" class="active">
+                    <label for="name" >{{'customerDetails.fields.name.caption' | translate }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="{{'customerDetails.fields.country.placeholder' | translate}}" type="text" formControlName="country" id="country" class="active">
+                    <label for="country">{{'customerDetails.fields.country.caption' | translate }}</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="{{'customerDetails.fields.countryCode.placeholder' | translate}}" type="text" formControlName="countryCode" id="country_code" class="active">
+                    <label for="country_code">{{'customerDetails.fields.countryCode.caption' | translate }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="{{'customerDetails.fields.city.placeholder' | translate}}" type="text" formControlName="city" id="city" class="active">
+                    <label for="city">{{'customerDetails.fields.city.caption' | translate }}</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="{{'customerDetails.fields.phone.placeholder' | translate}}" type="text" formControlName="phone" id="phone" class="active">
+                    <label for="phone">{{'customerDetails.fields.phone.caption' | translate }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s5 offset-s7 right-align">
+                    <button class="waves-effect waves-light btn blue lighten-2" type="submit" [class.disabled]="customer.invalid">{{'buttons.save' | translate}}</button>
+                    <button class="waves-effect waves-orange btn white grey-text" (click)="navigateBack()">{{'buttons.cancel' | translate}}</button>
+                    <button *ngIf="customer.value.id" class="waves-effect waves-red orange btn" type="button" (click)="deleteCustomer(customer.value.id)">{{'buttons.delete' | translate}}</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

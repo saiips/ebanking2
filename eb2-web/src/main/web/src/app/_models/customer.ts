@@ -27,4 +27,5 @@ LAST_LOGIN_FAIL_DATE            : string;
 BIOMETRIC_REMINDER_FLAG         : string;
 BIOMETRIC_REMINDER_DATE         : string;
 STATUS                          : string;
+VERSION                         : number;
 }

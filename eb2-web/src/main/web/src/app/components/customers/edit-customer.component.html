@@ -1,0 +1,76 @@
+<div class="col-md-6">
+  <h2 class="text-center">Edit User</h2>
+  <div [hidden]="!error">
+    <div class="row-md-6">
+      Error Message: {{errorMessage}}
+    </div>
+  </div>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="PERM_EMAIL">Email address:</label>
+      <input type="email" formControlName="PERM_EMAIL" placeholder="Email" name="PERM_EMAIL" class="form-control" id="PERM_EMAIL" [ngClass]="{ 'is-invalid': submitted && f.PERM_EMAIL.errors }"/>
+      <div *ngIf="submitted && f.PERM_EMAIL.errors" class="invalid-feedback">
+        <div *ngIf="f.PERM_EMAIL.errors.required">Email is required</div>
+        <div *ngIf="f.PERM_EMAIL.errors.email">Email is invalid</div>
+      </div>      
+    </div>
+
+    <div class="form-group">
+      <label for="FULL_NAME">Full Name:</label>
+      <input formControlName="FULL_NAME" placeholder="First Name" name="FULL_NAME" class="form-control" id="FULL_NAME" [ngClass]="{ 'is-invalid': submitted && f.FULL_NAME.errors }"/>
+      <div *ngIf="submitted && f.FULL_NAME.errors" class="invalid-feedback">
+        <div *ngIf="f.FULL_NAME.errors.required">Full Name is required</div>
+        <div *ngIf="f.FULL_NAME.errors.minlength">Full Name is invalid</div>
+        <div *ngIf="f.FULL_NAME.errors.maxlength">Full Name is invalid</div>
+      </div>        
+    </div>
+
+    <div class="form-group">
+        <label for="SEX">Sex:</label>
+        <!-- <input formControlName="SEX" placeholder="Sex" name="SEX" class="form-control" id="SEX" [ngClass]="{ 'is-invalid': submitted && f.SEX.errors }"/> -->
+        <select formControlName="SEX" name="SEX" class="form-control" id="SEX" [ngClass]="{ 'is-invalid': submitted && f.SEX.errors }">
+          <option *ngFor="let option of options" [value]="option">{{Sex[option]}}</option>
+        </select>
+        <div *ngIf="submitted && f.SEX.errors" class="invalid-feedback">
+          <div *ngIf="f.SEX.errors.required">Sex is required</div>
+        </div>        
+      </div>    
+
+    <div formGroupName="MOBILE" class="form-group">
+        <div class="row-md-6">
+        <h2>Mobile</h2>
+        <label for="MOB_COUNTRY_CODE">Country:</label>
+        <input formControlName="MOB_COUNTRY_CODE" placeholder="Country" name="MOB_COUNTRY_CODE" class="form-control" id="MOB_COUNTRY_CODE" [ngClass]="{ 'is-invalid': submitted && f['MOBILE'].controls['MOB_COUNTRY_CODE'].errors }"/>
+        <div *ngIf="submitted && f['MOBILE'].controls['MOB_COUNTRY_CODE'].errors" class="invalid-feedback">
+            <div *ngIf="f['MOBILE'].controls['MOB_COUNTRY_CODE'].errors.required">Country is required</div>
+        </div>   
+
+        <label for="MOB_AREA_CODE">Area:</label>
+        <input formControlName="MOB_AREA_CODE" placeholder="Area" name="MOB_AREA_CODE" class="form-control" id="MOB_AREA_CODE" [ngClass]="{ 'is-invalid': submitted && f['MOBILE'].controls['MOB_AREA_CODE'].errors }"/>      
+        <div *ngIf="submitted && f['MOBILE'].controls['MOB_AREA_CODE'].errors" class="invalid-feedback">
+            <div *ngIf="f['MOBILE'].controls['MOB_AREA_CODE'].errors.required">Area is required</div>
+        </div>   
+
+        <label for="MOB_NUMBER">Mobile Number:</label>
+        <input formControlName="MOB_NUMBER" placeholder="Mobile Number" name="MOB_NUMBER" class="form-control" id="MOB_NUMBER" [ngClass]="{ 'is-invalid': submitted &&  f['MOBILE'].controls['MOB_NUMBER'].errors }"/>
+        <div *ngIf="submitted && f['MOBILE'].controls['MOB_NUMBER'].errors" class="invalid-feedback">
+            <div *ngIf="f['MOBILE'].controls['MOB_NUMBER'].errors.required">Mobile is required</div>
+            <div *ngIf="f['MOBILE'].controls['MOB_NUMBER'].errors.pattern">Mobile is invalid</div>
+        </div>   
+        </div>
+    </div>
+    
+    <!-- Case 1:  form property : dirty, pristence, touched ...etc -->
+    <!-- <button type="submit" class="btn btn-success" [disabled]="!editForm.dirty">Update</button> -->
+    <!-- Case 2:  custom method -->
+    <button type="submit" class="btn btn-success" [disabled]="!isFormChanged()">Update</button>
+    
+    <button type="button" class="btn btn-success" (click)="resetForm()">Reset</button>
+
+    <!-- Case 1:  routerLink -->
+    <!-- <button class="btn btn-primary" [routerLink]="['/listCustomer']">Cancel</button> -->
+    <!-- Case 2:  custom method -->
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </form>
+  
+</div>

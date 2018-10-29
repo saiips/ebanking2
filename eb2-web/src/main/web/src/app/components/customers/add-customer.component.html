@@ -1,0 +1,31 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add User</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="PERM_EMAIL">Email address:</label>
+      <input type="email" formControlName="PERM_EMAIL" placeholder="Email" name="PERM_EMAIL" class="form-control" id="PERM_EMAIL" [ngClass]="{ 'is-invalid': submitted && f.PERM_EMAIL.errors }"/>
+      <div *ngIf="submitted && f.PERM_EMAIL.errors" class="invalid-feedback">
+        <div *ngIf="f.PERM_EMAIL.errors.required">Email is required</div>
+      </div>  
+    </div>
+
+    <div class="form-group">
+      <label for="FULL_NAME">Full Name:</label>
+      <input formControlName="FULL_NAME" placeholder="Full Name" name="FULL_NAME" class="form-control" id="FULL_NAME" [ngClass]="{ 'is-invalid': submitted && f.FULL_NAME.errors }"/>
+      <div *ngIf="submitted && f.FULL_NAME.errors" class="invalid-feedback">
+        <div *ngIf="f.FULL_NAME.errors.required">Full Name is required</div>
+      </div>   
+    </div>
+
+    <div class="form-group">
+      <label for="MOB_NUMBER">Mobile Number:</label>
+      <input formControlName="MOB_NUMBER" placeholder="Mobile Number" name="MOB_NUMBER" class="form-control" id="MOB_NUMBER" [ngClass]="{ 'is-invalid': submitted && f.MOB_NUMBER.errors }"/>
+      <div *ngIf="submitted && f.MOB_NUMBER.errors" class="invalid-feedback">
+        <div *ngIf="f.MOB_NUMBER.errors.required">Mobile Number is required</div>
+      </div>  
+    </div>
+
+    <button class="btn btn-success">Add</button>
+    <button class="btn btn-cancel" [routerLink]="['/customers']">Cancel</button>
+  </form>
+</div>

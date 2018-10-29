@@ -1,0 +1,31 @@
+<div class="col-md-10">
+  <h2> Customer Details</h2>
+  <button class="btn btn-danger" (click)="addCustomer()"> Add Customer</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Customer ID</th>
+      <th>Full Name</th>
+      <th>Mobile No.</th>
+      <th>Email</th>
+      <th>Version</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of customers">
+      <td class="hidden">{{customer.CUST_ID}}</td>
+      <td>{{customer.FULL_NAME}}</td>
+      <td>{{customer.MOB_NUMBER}}</td>
+      <td>{{customer.PERM_EMAIL}}</td>
+      <td>{{customer.VERSION}}</td>
+      <td>
+          <button class="btn btn-danger" (click)="deleteCustomer(customer)"> Delete</button>
+          <button class="btn btn-danger" (click)="editCustomer(customer)" style="margin-left: 30px;"> Edit</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p></p>
+  <p><a [routerLink]="['/home']">Home</a></p>
+</div>

@@ -1,18 +1,34 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { ListComponent } from './list';
-import { CustomersComponent } from './customers';
-// import { AuthGuard } from './_guards';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { ListComponent } from './components/list/list.component';
+
+import { ProfileComponent } from "./components/profile/profile.component";
+
+import { CustomerListComponent } from './components/customer/list';
+import { CustomerDetailsComponent } from './components/customer/details';
+import { CustomerResolver } from './resolvers/customerResolver';
+
+
+import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent,  pathMatch: 'full' },
-    { path: 'login', component: LoginComponent,  pathMatch: 'full' },
-    { path: 'list', component: ListComponent,  pathMatch: 'full'},
-    { path: 'customers', component: CustomersComponent,  pathMatch: 'full'},
-    
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    // demo for stanard page navigation
+    { path: 'login', component: LoginComponent },
+    { path: 'list', component: ListComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'profile', component: ProfileComponent },
+
+    // demo for lazy loading module 
+    { path: 'customers', loadChildren: './components/customers/customers.module#CustomersModule' },
+
+    // demo for a custom resolver
+    { path: 'customer', component: CustomerListComponent },
+    { path: 'customer/add', component: CustomerDetailsComponent, resolve: { customer: CustomerResolver} },
+    { path: 'customer/:id', component: CustomerDetailsComponent, resolve: { customer: CustomerResolver} },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
