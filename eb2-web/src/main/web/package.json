@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --base-href /eb2/ --deploy-url /eb2/",
-    "build": "ng build --prod --build-optimizer=false --base-href /eb2/ --deploy-url /eb2/",
+    "build": "ng build --prod --build-optimizer=false --aot=false --base-href /eb2/ --deploy-url /eb2/",
     "build-dev": "ng build --build-optimizer=false --base-href /eb2/ --deploy-url /eb2/",
     "test": "ng test",
     "lint": "ng lint",
@@ -34,6 +34,7 @@
     "npm": "^6.4.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "systemjs": "^2.1.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

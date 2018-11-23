@@ -15,6 +15,9 @@ import { DataTableModule } from 'angular-6-datatable';
 // App Routing 
 import { AppRoutingModule } from './app.routing';
 
+// All Auth Directivies
+import { ALL_AUTH_DIRECTIVES } from './directives/index';
+
 // All Components
 import { BOOTSTRAP_COMPONENT, ALL_COMPONENTS}  from './components/index';
 
@@ -44,7 +47,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     ...ALL_COMPONENTS,
-    ...ALL_PIPES
+    ...ALL_PIPES,
+    ...ALL_AUTH_DIRECTIVES
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,1 @@
+export type AuthGroup = 'READ' | 'UPDATE' | 'CREATE' | 'DELETE';

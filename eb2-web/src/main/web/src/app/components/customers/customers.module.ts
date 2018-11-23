@@ -1,3 +1,4 @@
+import { SharedPipesModule } from './../../shared/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule }    from '@angular/forms';
@@ -12,12 +13,13 @@ import { customersRoute } from './customers.routing';
     imports: [
       CommonModule,
       ReactiveFormsModule,
+      SharedPipesModule,
       RouterModule.forChild(customersRoute)
     ],
     declarations: [
         ListCustomerComponent, 
         EditCustomerComponent, 
         AddCustomerComponent
-    ],
+    ]
   })
  export class CustomersModule { }

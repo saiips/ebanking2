@@ -6,8 +6,16 @@
         <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
     </ul>
 </div>
+
+<p [myHideIfUnauthorized]='updatePermission' default='READ'>
+    You must have READ privilege to see this sentence.
+</p>
 <p><a [routerLink]="['/list']">List</a></p>
 <p><a [routerLink]="['/profile']">My Profile</a></p>
 <p><a [routerLink]="['/customers']">Customers</a></p>
+<p><a [routerLink]="['/product']">Product (EventEmitter)</a></p>
+<p><a [routerLink]="['/component']">Dynamic Loader (Component Based)</a></p>
+<p><a [routerLink]="['/service']">Dynamic Loader (Service Based)</a></p>
+<p><a [routerLink]="['/remote']">Remote Dynamic Loader</a></p>
 <p><a [routerLink]="['/customer']">Customer (v2.0)</a></p>
 <p><a [routerLink]="['/login']">Logout</a></p>

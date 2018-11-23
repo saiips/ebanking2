@@ -16,7 +16,7 @@
     <tr *ngFor="let customer of customers">
       <td class="hidden">{{customer.CUST_ID}}</td>
       <td>{{customer.FULL_NAME}}</td>
-      <td>{{customer.MOB_NUMBER}}</td>
+      <td>{{customer.MOB_NUMBER | phonemask:4 }} </td>
       <td>{{customer.PERM_EMAIL}}</td>
       <td>{{customer.VERSION}}</td>
       <td>

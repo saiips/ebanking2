@@ -24,6 +24,10 @@ const appRoutes: Routes = [
 
     // demo for lazy loading module 
     { path: 'customers', loadChildren: './components/customers/customers.module#CustomersModule' },
+    { path: 'product', loadChildren: './components/product/product.module#ProductModule' },
+    { path: 'component', loadChildren: './components/_component-based/_component-based.module#ComponentBasedModule' },
+    { path: 'service', loadChildren: './components/_service-based/_service-based.module#ServiceBasedModule' },
+    { path: 'remote', loadChildren: './components/_remote-based/remote.module#RemoteModule' },
 
     // demo for a custom resolver
     { path: 'customer', component: CustomerListComponent },
