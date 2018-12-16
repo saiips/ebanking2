@@ -36,7 +36,7 @@ export class ListCustomerComponent implements OnInit {
 
     // Alternative 1: pass data by query params
     // this.router.navigate(['editCustomer'], { queryParams: { editCustomer: JSON.stringify(customer) }});
-    
+
     // Alternative 2: pass data via DataService
     this.data.changeMessage(JSON.stringify(customer));
     this.router.navigate(['customers/' + customer.CUST_ID]);

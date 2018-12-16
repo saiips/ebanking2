@@ -13,7 +13,7 @@ export class DynamicDatePipe implements PipeTransform {
 
     public transform(value: any, pattern: string = 'mediumDate'): any {
         let ngPipe;
-        if (this._translateService.currentLang == "zh-HK") {
+        if (this._translateService.currentLang != "en-US") {
             ngPipe = new DatePipe("en-US");
             
         } else {

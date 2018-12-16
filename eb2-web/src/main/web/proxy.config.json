@@ -1,0 +1,6 @@
+{
+    "/api/user/login": {
+      "target": "http://cas.example.org:7001/eb2/api/user/login",
+      "secure": false
+    }
+  }

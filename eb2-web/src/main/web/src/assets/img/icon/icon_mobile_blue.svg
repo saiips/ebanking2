@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 44 63" style="enable-background:new 0 0 44 63;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#767C87;}
+	.st1{fill:#87B3FF;}
+</style>
+<title>icon_mobile_blue</title>
+<desc>Created with Sketch.</desc>
+<g id="icon_mobile_blue">
+	<g>
+		<path id="Stroke-1-Copy-2" class="st0" d="M37,63H7c-3.8,0-7-2.7-7-6V6c0-3.3,3.1-6,7-6h30c3.8,0,7,2.7,7,6v51
+			C44,60.3,40.9,63,37,63z"/>
+		<path id="Stroke-3-Copy-2" class="st1" d="M26,54c0,2.2-1.8,4-4,4s-4-1.8-4-4s1.8-4,4-4S26,51.8,26,54z"/>
+	</g>
+</g>
+<path class="st1" d="M35.4,44.9H9c-2.2,0-4-1.8-4-4V9.1c0-2.2,1.8-4,4-4h26.4c2.2,0,4,1.8,4,4v31.7C39.4,43.1,37.6,44.9,35.4,44.9z"
+	/>
+</svg>

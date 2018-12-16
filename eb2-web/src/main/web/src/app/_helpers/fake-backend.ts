@@ -45,7 +45,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
 
-          
+            /*
             // authenticate
             if (request.url.endsWith('/api/users/authenticate') && request.method === 'POST') {
                 if (request.body.username === testUser.username && request.body.password === testUser.password) {
@@ -63,6 +63,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return throwError({ error: { message: 'Username or password is incorrect' } });
                 }
             }
+            */
 
             // get users
             if (request.url.endsWith('/api/users') && request.method === 'GET') {

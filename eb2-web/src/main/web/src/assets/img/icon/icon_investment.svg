@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#767C87;}
+	.st1{fill:none;}
+	.st2{fill:#BD7A7A;stroke:#767C87;}
+</style>
+<title>icon_investment</title>
+<desc>Created with Sketch.</desc>
+<g id="styleguide">
+	<g id="style_icons" transform="translate(-423.000000, -415.000000)">
+		<g id="icon_investment" transform="translate(400.000000, 386.000000)">
+			<path id="Path-8" class="st0" d="M46,56.5v38c0,3.3,2.7,6,6,6h45"/>
+			<polyline id="Path-9" class="st0" points="64.1,85.3 67.2,88.5 82.7,70.8 88.2,74.9 95,66.5 			"/>
+			<path id="frame" class="st1" d="M22,27.5h100v100H22V27.5z"/>
+			<circle id="Oval-4" class="st2" cx="62" cy="82.5" r="3"/>
+			<circle id="Oval-4-Copy" class="st2" cx="97" cy="63.5" r="3"/>
+			<path id="Path-10" class="st0" d="M60,84.5L47,97.7"/>
+		</g>
+	</g>
+</g>
+</svg>

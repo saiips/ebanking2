@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="70px" viewBox="0 0 64 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_loading_spin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="53.6775888%" y1="44.7025273%" x2="100%" y2="47.7710178%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="mobile_ui_chi" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="06a5_app_chi_selfie_loading" transform="translate(-156.000000, -358.000000)">
+            <g id="icon_loading_spin" transform="translate(157.000000, 358.000000)">
+                <path d="M31.5,6.06593407 C14.1030304,6.06593407 0,20.1542046 0,37.532967 C0,54.9117295 14.1030304,69 31.5,69 C48.8969696,69 63,54.9117295 63,37.532967" id="Oval-2" stroke="url(#linearGradient-1)"></path>
+                <polyline id="Rectangle-5" stroke="#FFFFFF" transform="translate(26.186747, 6.445055) rotate(-143.000000) translate(-26.186747, -6.445055) " points="30.3614458 10.6153846 22.0120482 10.6153846 22.0120482 2.27472527"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

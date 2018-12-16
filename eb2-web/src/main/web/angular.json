@@ -19,8 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "./src/favicon.ico",
-              "./src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "./src/styles.css",
@@ -30,7 +30,7 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/materialize-css/dist/js/materialize.min.js"              
+              "./node_modules/materialize-css/dist/js/materialize.min.js"
             ]
           },
           "configurations": {

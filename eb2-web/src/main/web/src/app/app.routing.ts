@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { Eb2LoginComponent } from './components/eb2login/eb2login.component';
 import { ListComponent } from './components/list/list.component';
 
 import { ProfileComponent } from "./components/profile/profile.component";

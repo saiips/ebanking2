@@ -13,7 +13,7 @@ export class DynamicDecimalPipe implements PipeTransform {
 
     public transform(value: any, digits: string = null): any {
         let ngPipe;
-        if (this._translateService.currentLang == "zh-HK") {
+        if (this._translateService.currentLang != "en-US") {
             ngPipe = new DecimalPipe("en-US");
         } else {
             ngPipe = new DecimalPipe(this._translateService.currentLang);

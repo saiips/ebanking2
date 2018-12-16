@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { CommonModule}  from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 // i18n translation module
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -11,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // 3rd party modules
 import { MzButtonModule, MzInputModule, MzSidenavModule } from 'ngx-materialize';
 import { DataTableModule } from 'angular-6-datatable';
+import { LZStringModule, LZStringService } from 'ng-lz-string';
 
 // App Routing 
 import { AppRoutingModule } from './app.routing';
@@ -35,7 +37,9 @@ import { BROWSER_LANGUAGE } from './constants/index';
 
 // helper / utility functions
 import { fakeBackendProvider } from './_helpers';
-import { JwtInterceptor, ErrorInterceptor, getBaseUrl } from './_helpers';
+import { JwtInterceptor, getBaseUrl } from './_helpers';
+import { DemoComponent } from './demo/demo.component';
+
 
 let language = navigator.language || navigator['userLanguage'];
 
@@ -48,7 +52,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     ...ALL_COMPONENTS,
     ...ALL_PIPES,
-    ...ALL_AUTH_DIRECTIVES
+    ...ALL_AUTH_DIRECTIVES,
+    DemoComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DataTableModule,   
     HttpClientModule,
     AppRoutingModule,
+    LZStringModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,9 +79,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ...ALL_SERVICES,
     ...ALL_RESOLVERS,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: 'BASE_URL', useFactory: getBaseUrl, multi: true },
     { provide: BROWSER_LANGUAGE, useValue: language },
+    CookieService,
+    LZStringService,
 
     // provider used to create fake backend
     fakeBackendProvider

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 declare let $: any;
+declare let jQuery: any;
 
 @Component({
     selector: 'navigation',
@@ -12,12 +13,10 @@ export class NavigationComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-
         setTimeout(() => {
             $('#menu-toggle').sideNav();
-          },1000);
-
-        //$("#menu-toggle").sideNav();
+            },1000);  
     }
+      
 
 }

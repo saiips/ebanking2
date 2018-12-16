@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../_services';
 
 @Component({templateUrl: 'login.component.html'})
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
+
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -30,6 +31,10 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+    ngAfterViewInit() {
+        
     }
 
     // convenience getter for easy access to form fields

@@ -2,17 +2,37 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap:; script-src 'self' fonts.googleapis.com cdnjs.cloudflare.com localhost:* 127.0.0.1:* 10.0.75.1:* 'unsafe-eval' fonts.googleapis.com cdnjs.cloudflare.com 127.0.0.1:* localhost:* 10.0.75.1:*; style-src 'self' fonts.googleapis.com 127.0.0.1:* localhost:* 10.0.75.1:* 'unsafe-inline'; media-src *"/>
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap:; script-src 'self' cas.example.org:* passport.sso.com:* code.jquery.com fonts.googleapis.com cdnjs.cloudflare.com localhost:* 127.0.0.1:* 10.0.75.1:* 'unsafe-eval' 'unsafe-inline' localhost:*; style-src 'self' code.jquery.com fonts.googleapis.com 127.0.0.1:* localhost:* 10.0.75.1:* 'unsafe-inline' 'unsafe-eval'; media-src *"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Dah Sing Bank">
+    <meta name="keywords" content="Dah Sing Bank, Dah Sing, Dah Sing Bank">
+    <meta property="og:title" content="Dah Sing Bank, Limited">
+    <meta property="og:description" content="Dah Sing Bank">
+    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   
     <base href="/" />
     <title>DSB E-Banking 2.0</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+
+    <!-- style -->
+    <!--
+    <link rel="stylesheet" href="./assets/css/app.css">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Suranna" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.19/system.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/2.6.2/typescript.js"></script>    
+
+    <!--
+    <script defer src="./assets/js/plugin.js"></script>
+    <script defer src="./assets/js/app.js"></script>  
+    -->
 </head>
 <body>
     <app>Loading...</app>

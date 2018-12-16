@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="58px" viewBox="0 0 57 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_warning</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="style_icons" transform="translate(-131.000000, -844.000000)">
+            <g id="icon_warning" transform="translate(137.000000, 856.000000)">
+                <path d="M27.8665631,-7.26687371 L49.6583592,36.3167184 C51.1402947,39.2805894 49.9389486,42.8846277 46.9750776,44.3665631 C46.141945,44.7831294 45.2232666,45 44.2917961,45 L0.708203932,45 C-2.60550457,45 -5.29179607,42.3137085 -5.29179607,39 C-5.29179607,38.0685294 -5.07492552,37.149851 -4.65835921,36.3167184 L17.1334369,-7.26687371 C18.6153723,-10.2307447 22.2194106,-11.4320908 25.1832816,-9.95015528 C26.344446,-9.36957307 27.2859809,-8.42803812 27.8665631,-7.26687371 Z" id="Triangle-2" stroke="#767C87"></path>
+                <rect id="Rectangle-25" fill="#E55792" x="19" y="2" width="8" height="26" rx="4"></rect>
+                <circle id="Oval-2" fill="#E55792" cx="23" cy="34" r="4"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

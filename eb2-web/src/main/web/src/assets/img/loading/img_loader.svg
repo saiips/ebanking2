@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="178px" height="5px" viewBox="0 0 178 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>img_loader</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="mobile_ui_chi" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="img_loading_bar" fill="#C51A58">
+            <path d="M2.5,0 L175.5,0 C176.880712,-2.53632657e-16 178,1.11928813 178,2.5 L178,2.5 C178,3.88071187 176.880712,5 175.5,5 L2.5,5 C1.11928813,5 1.69088438e-16,3.88071187 0,2.5 L0,2.5 C-1.69088438e-16,1.11928813 1.11928813,2.53632657e-16 2.5,0 Z" id="img_loader"></path>
+        </g>
+    </g>
+</svg>

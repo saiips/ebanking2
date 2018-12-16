@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { UserService } from '../../_services';
 import { Courses } from '../../_models';
+import { AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-list',
@@ -11,15 +12,31 @@ import { Courses } from '../../_models';
 export class ListComponent implements OnInit {
   courses: Courses[] = [];
 
-  constructor(private userService: UserService) {}  
+  constructor(private userService: UserService, private authenticationService: AuthenticationService) {}  
 
   ngOnInit(): void {
     console.log("ListComponent::ngOnInit");
 
-    this.userService.getCourses().pipe(first()).subscribe(courses => { 
-      this.courses = courses; 
-    });
+    this.userService.getCourses()
+      .subscribe(
+        courses => { 
+                this.courses = courses; 
+        }
+      );
   };    
+
+  public refresh() {
+    console.log("clicked refresh");
+      this.authenticationService.refreshToken()
+          .pipe(first())
+          .subscribe(
+              data => {
+                  console.log("refresh completed "+ data);
+              },
+              error => {
+                  console.log("refresh failed "+ error);
+              });
+  };
 
    
 
