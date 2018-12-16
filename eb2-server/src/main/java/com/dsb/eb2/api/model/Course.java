@@ -1,4 +1,4 @@
-package com.dsb.eb2.model;
+package com.dsb.eb2.api.model;
 
 public class Course {
 	private String name;

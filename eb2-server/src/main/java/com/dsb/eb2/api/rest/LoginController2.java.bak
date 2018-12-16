@@ -1,0 +1,163 @@
+package com.dsb.eb2.api.rest;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.pac4j.cas.client.rest.CasRestFormClient;
+import org.pac4j.cas.config.CasConfiguration;
+import org.pac4j.cas.credentials.authenticator.CasRestAuthenticator;
+import org.pac4j.cas.profile.CasProfile;
+import org.pac4j.cas.profile.CasRestProfile;
+import org.pac4j.core.config.Config;
+import org.pac4j.core.context.J2EContext;
+import org.pac4j.core.context.WebContext;
+import org.pac4j.core.credentials.TokenCredentials;
+import org.pac4j.core.credentials.UsernamePasswordCredentials;
+import org.pac4j.jwt.config.encryption.SecretEncryptionConfiguration;
+import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
+import org.pac4j.jwt.profile.JwtGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.logging.LogLevel;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dsb.eb2.framework.controller.ApiController;
+import com.dsb.eb2.framework.controller.BaseController;
+import com.dsb.eb2.framework.log.Loggable;
+
+@RestController
+@RequestMapping(ApiController.REST_JWT_PATH)
+@Loggable
+public class LoginController extends BaseController {
+	
+	private final Log logger = LogFactory.getLog(this.getClass());
+	
+    @Value("${cas.serviceUrl}")
+    private String serviceUrl;
+    
+    @Value("${cas.logoutUrl}")
+    private String logoutUrl;
+    
+    @Value("${cas.prefixUrl}")
+    private String prefixUrl;
+    
+    @Value("${jwt.salt}")
+    private String salt;
+    
+    @Autowired
+    private Config config;
+
+    @CrossOrigin(origins = "*")
+	@RequestMapping(value="/user/authenticate", method = RequestMethod.POST)
+    @Loggable(result = false, value = LogLevel.INFO)
+    public ResponseEntity<Map<String, Object>> authenticate(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> payload) {
+    	
+    	
+    	// payload  
+        logger.info("payload=" + payload.toString());
+        String username = payload.get("username").toString();
+        String password = payload.get("password").toString();
+        String pinblock = payload.get("pinblock").toString();
+
+        // get the webContext
+        final WebContext webContext = new J2EContext(request, response);
+        
+        // construct CAS configuration
+        CasConfiguration casConfiguration = new CasConfiguration(prefixUrl);
+        casConfiguration.init();
+        
+        // construct CasRestFormClient, CasRestAuthenticator
+        final CasRestFormClient client = new CasRestFormClient(casConfiguration,"username","pinblock");
+        final CasRestAuthenticator restAuthenticator = new CasRestAuthenticator(casConfiguration);
+        final UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username,pinblock);
+        
+        restAuthenticator.validate(credentials, webContext);
+        final CasRestProfile profile = (CasRestProfile) credentials.getUserProfile(); 
+        logger.info("profile = " + profile);
+        
+        // get service ticket
+        final TokenCredentials casCredentials = client.requestServiceTicket(serviceUrl, profile, webContext);
+
+        // validate service ticket
+        final CasProfile casProfile = client.validateServiceTicket(serviceUrl, casCredentials, webContext);
+        logger.info("casProfile = " + casProfile);
+        
+        
+        /*
+        Map<String,Object> attributes = casProfile.getAttributes();
+        Set<Map.Entry<String,Object>> mapEntries = attributes.entrySet();
+        for (Map.Entry entry : mapEntries) {
+            logger.info(entry.getKey() + ":" + entry.getValue());
+        }
+        */
+        
+        // construct response message and headers
+        Map<String, Object> json = constructResponseMessage(casProfile);
+	    HttpHeaders headers = constructResponseHeader(casProfile);
+
+	    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+    }    
+    
+    
+    private Map<String, Object> constructResponseMessage(CasProfile casProfile) {
+    	Map<String, Object> json = new HashMap<String, Object>();
+    	
+    	if (casProfile != null) {
+	    	json.put("timestamp", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
+			json.put("status", 200);
+			json.put("error", "");
+		    json.put("message", "AUTHENTICATION_SUCCESS");
+		    json.put("path", "/rest-jwt/user/authenticate");	    
+		    
+    	} else {
+	    	json.put("timestamp", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
+			json.put("status", 500);
+			json.put("error", "Internal Server Error");
+		    json.put("message", "AUTHENTICATION_FAILED");
+		    json.put("path", "/rest-jwt/user/authenticate");	        	
+    	}
+    	
+    	return json;
+    }
+    
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private HttpHeaders constructResponseHeader(CasProfile casProfile) {
+    	 HttpHeaders headers = new HttpHeaders();
+    	 
+    	if (casProfile != null) {
+			final JwtGenerator generator = new JwtGenerator();
+            final SecretSignatureConfiguration secretSignatureConfiguration = new SecretSignatureConfiguration(salt);
+            final SecretEncryptionConfiguration secretEncryptionConfiguration = new SecretEncryptionConfiguration(salt);
+            
+            generator.setSignatureConfiguration(secretSignatureConfiguration);
+            generator.setEncryptionConfiguration(secretEncryptionConfiguration);
+            
+            String token = generator.generate(casProfile);
+            
+            
+            
+            jwtAuthenticator.validate
+
+        	headers.add("Content-Type", "application/json; charset=UTF-8");
+        	headers.add("X-AUTH-TOKEN", token);    		
+    	}
+    	
+    	return headers;
+    }
+
+}

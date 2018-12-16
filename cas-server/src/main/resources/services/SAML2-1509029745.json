@@ -1,7 +1,0 @@
-{
-  "@class" :            "org.apereo.cas.services.RegexRegisteredService",
-  "serviceId" :         "https://cas.example.org:6443/cas/idp/profile/SAML2/Callback.+",
-  "name" :              "SAML Authentication Request",
-  "id" :                1509029745,
-  "evaluationOrder" :   100
-}

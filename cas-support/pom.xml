@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cas-support</artifactId>
+    <packaging>pom</packaging>
+    
+    <parent>
+        <artifactId>cas-spring-dependencies</artifactId>
+        <groupId>com.dsb.eb2</groupId>
+        <version>latest</version>
+        <relativePath>../cas-spring-dependencies</relativePath>
+    </parent>
+
+    <modules>
+        <module>cas-support-single-login</module>
+        <module>cas-support-custom-auth</module>
+    </modules>
+
+
+</project>

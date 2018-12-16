@@ -1,12 +1,12 @@
 {
   "@class": "org.apereo.cas.services.RegexRegisteredService",
-  "serviceId" : "^(https|imaps|http)://cas.example.org:8002/login",
+  "serviceId" : "^(https|imaps|http)://localhost:8080/sample.*",
   "name": "CasClient-demo",
-  "id": 10000001,
+  "id": 10000003,
   "description": "CasClient-demo service",
-  "evaluationOrder": 100,
+  "evaluationOrder": 300,
   "theme":"apereo",
-  "logoutUrl": "http://cas.example.org:8002/login" ,
+  "logoutUrl": "http://localhost:8080/sample/" ,
   "attributeReleasePolicy" : {
     "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
   }

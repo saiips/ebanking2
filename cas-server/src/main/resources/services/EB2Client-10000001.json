@@ -1,0 +1,13 @@
+{
+  "@class": "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^(http|https)://cas.example.org:7001/.*",
+  "name": "EBank 2.0",
+  "id": 10000001,
+  "description": "EBank 2.0",
+  "evaluationOrder": 100,
+  "theme":"eb2",
+  "logoutUrl": "https://passport.sso.com:8443/cas/logout" ,
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+  }
+}

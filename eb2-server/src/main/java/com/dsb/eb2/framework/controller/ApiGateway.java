@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +13,21 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+import com.dsb.eb2.framework.log.Loggable;
 import com.dsb.eb2.framework.util.WebAppProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Loggable
 public class ApiGateway {
 	
-	private final Log logger = LogFactory.getLog(this.getClass());
+	// private final Log logger = LogFactory.getLog(this.getClass());
 	
 	@Autowired
 	private WebAppProperties webAppProperties;
 	
 	
-	
+	@Loggable(result = false, value = LogLevel.INFO)
 	public <T> Object doCoherenceRequest(String type, String operation, String dataType, String serviceUrl, String serviceMethod, String requestPayload, Class<T> responseClass) throws IOException, Exception {
 		
 		String coherenceID = "";
@@ -34,7 +35,7 @@ public class ApiGateway {
 		return doRequest(type, operation, dataType, "Y", coherenceID, serviceUrl, serviceMethod, requestPayload, responseClass);
 	}
 	
-	
+	@Loggable(result = false, value = LogLevel.INFO)
 	public <T> Object doRequest(String type, String operation, String dataType, String coherenceRequired, String coherenceID, String serviceURL, String serviceMethod, String requestPayload, Class<T> responseClass) throws IOException, Exception {
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -49,7 +50,7 @@ public class ApiGateway {
 		return object;
 	}
 	
-
+	@Loggable(result = false, value = LogLevel.INFO)
 	public <T> Object doRequestTest(String type, String operation, String dataType, String coherenceRequired, String coherenceID, String serviceURL, String serviceMethod, String requestPayload, Class<T> responseClass) throws IOException, Exception {
 		
 		byte[] result = Files.readAllBytes(Paths.get("c:\\temp", "test2.json"));
@@ -61,7 +62,7 @@ public class ApiGateway {
 	
 
 	
-	
+	@Loggable(result = false, value = LogLevel.INFO)
 	public <T> Object getObject(String url, String requestPayload, Class<T> responseClass) throws IOException, Exception { 
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.setRequestFactory(clientHttpRequestFactory());
@@ -92,10 +93,10 @@ public class ApiGateway {
 		return object;
 	}
 	
-	
+	@Loggable(result = false, value = LogLevel.INFO)
 	public <T> Object getObjectTest(String url, String requestPayload, Class<T> responseClass) throws IOException, Exception {
 		
-		byte[] result = Files.readAllBytes(Paths.get("c:\\temp", "test2.json"));
+		byte[] result = Files.readAllBytes(Paths.get("c:\\temp", "test.json"));
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		T object = objectMapper.readValue(result, responseClass);
@@ -104,14 +105,12 @@ public class ApiGateway {
 		return object;
 	}		
 	
-	
 	private ClientHttpRequestFactory clientHttpRequestFactory() {
 	    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
 	    factory.setReadTimeout(Integer.valueOf(webAppProperties.getReadTimeout()));
 	    factory.setConnectTimeout(Integer.valueOf(webAppProperties.getConnectionTimeout()));
 	    return factory;
 	}		
-	
 	
 	private RequestGateway constructGatewayRequest(String type, String operation, String dataType, String coherenceRequired, String coherenceID, String serviceURL, String serviceMethod, String requestPayload) {
 
@@ -137,9 +136,11 @@ public class ApiGateway {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode rootNode = objectMapper.readTree(result);
-		JsonNode gatewayResponse = rootNode.path("gatewayResponse");
-		JsonNode responsePayload = gatewayResponse.path("responsePayload");
-		JsonNode output = responsePayload.path("output");
+		JsonNode output = rootNode.path("output");
+		
+//		JsonNode gatewayResponse = rootNode.path("gatewayResponse");
+//		JsonNode responsePayload = gatewayResponse.path("responsePayload");
+//		JsonNode output = responsePayload.path("output");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		T object = mapper.readValue(output.toString(), responseClass);		
@@ -151,9 +152,10 @@ public class ApiGateway {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode rootNode = objectMapper.readTree(result);
-		JsonNode gatewayResponse = rootNode.path("gatewayResponse");
-		JsonNode responsePayload = gatewayResponse.path("responsePayload");
-		JsonNode output = responsePayload.path("output");
+		JsonNode output = rootNode.path("output");
+//		JsonNode gatewayResponse = rootNode.path("gatewayResponse");
+//		JsonNode responsePayload = gatewayResponse.path("responsePayload");
+//		JsonNode output = responsePayload.path("output");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		T object = mapper.readValue(output.toString(), responseClass);		

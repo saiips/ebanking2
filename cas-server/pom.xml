@@ -1,25 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cas-server</artifactId>
-    <packaging>war</packaging>
-    <version>1.0</version>
 
+    <groupId>com.dsb.eb2</groupId>
+    <artifactId>cas-server</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+	<name>cas-server</name>
+	
+    <!-- 
     <parent>
         <groupId>com.dsb.eb2</groupId>
         <artifactId>eb2</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+     -->
+     
+    <properties>
+        <cas.version>5.3.5</cas.version>
+        <springboot.version>1.5.5.RELEASE</springboot.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <app.server>-tomcat</app.server>    
+    </properties>
+    
+
+    <dependencies>
+    
+    	<!-- custom cas features -->
+        <dependency>
+            <groupId>com.dsb.eb2</groupId>
+            <artifactId>cas-support-single-login</artifactId>
+            <version>latest</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.dsb.eb2</groupId>
+            <artifactId>cas-support-custom-auth</artifactId>
+            <version>latest</version>
+        </dependency>
+
+        <!-- <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-token-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency> -->
+
+        <!--
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-token-tickets</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        -->
+
+        <!-- <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-pac4j-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency> -->
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-rest</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-rest-tokens</artifactId>
+            <version>${cas.version}</version>
+        </dependency>         
+        
+		<dependency>
+		    <groupId>org.apereo.cas</groupId>
+		    <artifactId>cas-server-support-hazelcast-ticket-registry</artifactId>
+		    <version>${cas.version}</version>
+		</dependency>
+        
+        
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-webapp${app.server}</artifactId>
+            <version>${cas.version}</version>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.3.3.RELEASE</version>
+        </dependency>   
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+        </dependency>
+        
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apereo.cas</groupId>
+                <artifactId>cas-server-support-bom</artifactId>
+                <version>${cas.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>        
+    </dependencyManagement>
+ 
+    
+	<profiles>
+	    <profile>
+	        <id>dev</id>
+	        <activation>
+	            <activeByDefault>true</activeByDefault>
+	        </activation>
+	        <properties>
+	            <profile.name>dev</profile.name>
+	        </properties>
+	    </profile>
+	    <profile>
+	        <id>prod</id>
+	        <properties>
+	           <profile.name>prod</profile.name>
+	        </properties>
+	    </profile>
+	</profiles>     
 
     <build>
         <plugins>
             <plugin>
                 <groupId>com.rimerosolutions.maven.plugins</groupId>
                 <artifactId>wrapper-maven-plugin</artifactId>
-                <version>0.0.5</version>
+                <version>0.0.4</version>
                 <configuration>
                     <verifyDownload>true</verifyDownload>
                     <checksumAlgorithm>MD5</checksumAlgorithm>
@@ -30,30 +152,21 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${springboot.version}</version>
                 <configuration>
-                    <mainClass>${mainClassName}</mainClass>
+                    <mainClass>org.springframework.boot.loader.WarLauncher</mainClass>
                     <addResources>true</addResources>
-                    <executable>${isExecutable}</executable>
-                    <layout>WAR</layout>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.1.0</version>
                 <configuration>
                     <warName>cas</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <recompressZippedFiles>false</recompressZippedFiles>
                     <archive>
                         <compress>false</compress>
-                        <manifestFile>${manifestFileToUse}</manifestFile>
+                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
                     <overlays>
                         <overlay>
@@ -61,9 +174,6 @@
                             <artifactId>cas-server-webapp${app.server}</artifactId>
                         </overlay>
                     </overlays>
-                    <dependentWarExcludes>
-                    	**/services/*.json
-                    </dependentWarExcludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -71,112 +181,40 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
             </plugin>
+			<plugin>
+			  <artifactId>maven-resources-plugin</artifactId>
+			  <version>2.4</version>
+			  <executions>
+			    <execution>
+			      <id>copy-prod-resources</id>
+			      <phase>process-resources</phase>
+			      <goals>
+			         <goal>copy-resources</goal>
+			      </goals>
+			      <configuration>
+			        <!-- this is important -->
+			        <overwrite>true</overwrite>
+			        <!-- target -->
+			        <outputDirectory>${basedir}/target/classes</outputDirectory>
+			        <resources>
+			          <resource>
+			            <!-- source -->
+			            <directory>src/main/resources/${profile.name}</directory>
+			          </resource>
+			        </resources>
+			      </configuration>
+			    </execution>
+			  </executions>
+			</plugin>
+            
         </plugins>
         <finalName>cas</finalName>
     </build>
 
+
+
+<!-- 	
     <profiles>
-        <profile>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <id>default</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apereo.cas</groupId>
-                    <artifactId>cas-server-webapp${app.server}</artifactId>
-                    <version>${cas.version}</version>
-                    <type>war</type>
-                    <scope>runtime</scope>
-                </dependency>
-                <!--
-                ...Additional dependencies may be placed here...
-                -->
-				<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-				<dependency>
-				    <groupId>com.google.guava</groupId>
-				    <artifactId>guava</artifactId>
-				    <version>23.0</version>
-				</dependency>
-				
-				<dependency>
-				    <groupId>io.buji</groupId>
-				    <artifactId>buji-pac4j</artifactId>
-				    <version>${buji.version}</version>
-				</dependency>
-				<dependency>
-				    <groupId>org.pac4j</groupId>
-				    <artifactId>pac4j-cas</artifactId>
-				    <version>${pac4j.version}</version>
-				</dependency>
-				<dependency>
-				    <groupId>org.pac4j</groupId>
-				    <artifactId>pac4j-jwt</artifactId>
-				    <version>${pac4j.version}</version>
-				</dependency>
-				<dependency>
-				    <groupId>org.pac4j</groupId>
-				    <artifactId>pac4j-http</artifactId>
-				    <version>${pac4j.version}</version>
-				</dependency>		
-				
-            </dependencies>
-        </profile>
-
-        <profile>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <id>exec</id>
-            <properties>
-                <mainClassName>org.apereo.cas.web.CasWebApplication</mainClassName>
-                <isExecutable>true</isExecutable>
-                <manifestFileToUse></manifestFileToUse>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.soebes.maven.plugins</groupId>
-                        <artifactId>echo-maven-plugin</artifactId>
-                        <version>0.3.0</version>
-                        <executions>
-                            <execution>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>echo</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <echos>
-                                <echo>Executable profile to make the generated CAS web application executable.</echo>
-                            </echos>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <id>bootiful</id>
-            <properties>
-                <app.server>-tomcat</app.server>
-                <isExecutable>false</isExecutable>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apereo.cas</groupId>
-                    <artifactId>cas-server-webapp${app.server}</artifactId>
-                    <version>${cas.version}</version>
-                    <type>war</type>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
         <profile>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -206,6 +244,7 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
-    
+    </profiles>	
+ -->
+ 
 </project>

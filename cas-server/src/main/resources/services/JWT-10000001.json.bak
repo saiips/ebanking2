@@ -1,0 +1,40 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^(http|https)://.*",
+  "name" : "mfgClient",
+  "id" : 10000001,
+  "evaluationOrder": 100,
+  "theme":"eb2",
+  "logoutUrl": "https://passport.sso.com:8443/cas/logout" ,  
+  "properties" : {
+    "@class" : "java.util.HashMap",
+    "jwtAsServiceTicket" : {
+      "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+      "values" : [ "java.util.HashSet", [ "true" ] ]
+    },
+    "jwtAsServiceTicketSigningKey" : {
+      "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+      "values" : [ "java.util.HashSet", [ "CBHmUmKmZt99G271g8YNdA24Bol_lPu2FZT9dxmBDm0qRBCcLF9DcOEIX4kUu1YKDffdEM-aYJMdrCOedxOusg" ] ]
+   },
+   "jwtAsServiceTicketEncryptionKey" : {
+        "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+        "values" : [ "java.util.HashSet", [ "jkh8GR1QDivmySap5vhoLXVoIA_kII3-dhUH9IDhG5s" ] ]
+   },
+   "jwtSigningSecretAlg" : {
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+    "values" : [ "java.util.HashSet", [ "HS256" ] ]
+  },
+  "jwtEncryptionSecretAlg" : {
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+    "values" : [ "java.util.HashSet", [ "dir" ] ]
+  },
+  "jwtEncryptionSecretMethod" : {
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+    "values" : [ "java.util.HashSet", [ "A128CBC-HS256" ] ]
+  },
+  "jwtSecretsAreBase64Encoded" : {
+     "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+     "values" : [ "java.util.HashSet", [ "false" ] ]
+  }               
+  }
+}

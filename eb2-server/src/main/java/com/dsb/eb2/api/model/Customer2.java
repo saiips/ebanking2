@@ -1,4 +1,4 @@
-package com.dsb.eb2.model;
+package com.dsb.eb2.api.model;
 
 import java.io.Serializable;
 import java.util.Date;

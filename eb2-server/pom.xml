@@ -14,10 +14,20 @@
     </parent>  
   
   	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>  	
 	    <dependency>
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-web</artifactId>
 	    </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-cas</artifactId>
+        </dependency>
+        	    
 	    <dependency>
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-actuator</artifactId>
@@ -42,7 +52,13 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-web</artifactId>
-	    </dependency>	    
+	    </dependency>	
+	    
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-configuration-processor</artifactId>
+        	<optional>true</optional>
+        </dependency>	        
 	    <!-- 
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
@@ -114,11 +130,99 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
-	</dependencies>
-	
+        
+        <!-- 
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1.0</version>
+		</dependency>      
+		 -->  
+
+        <!--  persistence -->
+        <!-- 
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>5.3.6.Final</version>
+		</dependency>
+		 -->
+        
+		<!-- 
+		<dependency>
+		  <groupId>org.hibernate.javax.persistence</groupId>
+		  <artifactId>hibernate-jpa-2.1-api</artifactId>
+		  <version>1.0.2.Final</version>
+		</dependency>		
+        
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+         -->
+         
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>persistence-api</artifactId>
+		    <version>1.0.2</version>
+		</dependency>         
+        
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.pac4j</groupId>
+            <artifactId>spring-webmvc-pac4j</artifactId>
+            <version>${spring-webmvc-pac4j.version}</version>
+        </dependency>
+        		
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.buji</groupId>
+            <artifactId>buji-pac4j</artifactId>
+            <version>${buji.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-cas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-http</artifactId>
+        </dependency>
+        
+		<dependency>
+		   <groupId>org.apache.commons</groupId>
+		   <artifactId>commons-lang3</artifactId>
+		   <version>3.3.2</version>
+		</dependency>
+		
+  	</dependencies>
+  	
 	<build>
+		<resources>
+		    <resource>
+		        <directory>src/main/resources</directory>
+		        <filtering>true</filtering>
+		    </resource>
+		</resources>		          
+	
         <plugins>
+        	<!--  skip this part  -->
+        	<!--
 			<plugin>
 			<artifactId>maven-resources-plugin</artifactId>
 			<executions>
@@ -130,13 +234,14 @@
 			              <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory >
 			              <resources>
 			                  <resource>
-			                      <directory>${project.parent.basedir}/eb2-web/src/main/web/dist/np-app/</directory >
+			                      <directory>${project.parent.basedir}/eb2-web/src/main/web/dist/</directory >
 			                  </resource>
 			              </resources>
 			          </configuration>
 			      </execution>
 			</executions>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -154,7 +259,16 @@
 		        <artifactId>maven-war-plugin</artifactId>
 		        <configuration>
 		          <packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
-		          <warName>eb2-app</warName>
+                  <webResources>
+                      <webResource>
+                        <filtering>true</filtering>
+                        <directory>src/main/webapp</directory>
+                        <includes>
+                            <include>**/web.xml</include>
+                        </includes>
+                      </webResource>
+                  </webResources>
+                  <failOnMissingWebXml>true</failOnMissingWebXml>		          
 		        </configuration>
       		</plugin>
             <plugin>
@@ -180,5 +294,6 @@
                 </executions>
             </plugin>   
         </plugins>
+        <finalName>eb2</finalName>
     </build>
 </project>

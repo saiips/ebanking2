@@ -1,0 +1,27 @@
+{
+    "@class" : "org.apereo.cas.services.RegexRegisteredService",
+    "serviceId" : "^(http|https)://.*",
+    "name" : "JWT",
+    "id" : 10000001,
+    "evaluationOrder": 100,
+    "theme":"eb2",
+    "multifactorPolicy" : {
+      "@class" : "org.apereo.cas.services.DefaultRegisteredServiceMultifactorPolicy",
+      "multifactorAuthenticationProviders" : [ "java.util.LinkedHashSet", [ "mfa-duo" ] ]
+    },    
+    "properties" : {
+      "@class" : "java.util.HashMap",
+      "jwtAsServiceTicket" : {
+        "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+        "values" : [ "java.util.HashSet", [ "true" ] ]
+      },
+      "jwtAsServiceTicketSigningKey" : {
+        "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+        "values" : [ "java.util.HashSet", [ "1234567890123456789012345678901234567890123" ] ]
+     },
+     "jwtAsServiceTicketEncryptionKey" : {
+          "@class" : "org.apereo.cas.services.DefaultRegisteredServiceProperty",
+          "values" : [ "java.util.HashSet", [ "1234567890123456789012345678901234567890123" ] ]
+     }      
+    }
+  }

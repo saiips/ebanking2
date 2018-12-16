@@ -7,9 +7,9 @@
 	</appender>
 	
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/tmp/eb2-server.log</file>
+		<file>/logs/eb2-server.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/tmp/eb2-server_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>/logs/eb2-server_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>1MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
@@ -57,12 +57,14 @@
 	<logger name="org.jooq" level="ERROR" />
 	
 	<!-- eb2.0 API -->
-	<logger name="com.dsb.eb2.framework.interceptor" level="INFO" additivity="false">
+	<logger name="com.dsb.eb2" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>	
+	<logger name="com.dsb.eb2.framework" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger name="com.dsb.eb2.api.rest" level="INFO" additivity="false">
+	<logger name="com.dsb.eb2.api" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
 	
 </configuration>
