@@ -1,7 +1,4 @@
 {
-  "menu":{
-    "customers": "Customers"
-  },
   "customerList": {
     "header": "Customer List",
     "tableHeaders": {
@@ -11,11 +8,6 @@
       "customerSince": "Customer since",
       "satisfaction": "Satisfaction"
     }
-  },
-  "languages": {
-    "de-DE": "German",
-    "en-US": "English",
-    "zh-HK": "中文"
   },
   "customerDetails": {
     "headers": {
