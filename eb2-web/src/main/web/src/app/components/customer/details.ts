@@ -4,7 +4,8 @@ import {CustomerServiceV2} from '../../_services/customer.serviceV2';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Customer} from '../../models/customer';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+
 
 // Alternative 1: 
 //import * as $ from 'jquery';
@@ -13,6 +14,8 @@ import { TranslateService } from '@ngx-translate/core';
 declare let $: any;
 
 // declare var Materialize: any;
+
+declare var require: any;
 
 @Component({
     selector: 'customer-details',
@@ -23,11 +26,19 @@ export class CustomerDetailsComponent implements OnInit, AfterViewInit {
     public customer: FormGroup;
 
     constructor(private _router: Router,
-                private _location: Location,
-                private _route: ActivatedRoute,
-                private _customerService: CustomerServiceV2,
-                private _translateService: TranslateService ) {
+        private _location: Location,
+        private _route: ActivatedRoute,
+        private _customerService: CustomerServiceV2,
+        private _translateService: TranslateService) {
 
+        this._translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.setTranslation(event.lang);
+        });
+    }
+
+    private setTranslation(lang: string) {
+        let i18n = require('./../../../assets/i18n/customer/' + lang + '.json');
+        this._translateService.setTranslation(lang, i18n, true);
     }
 
     public get currentLanguage(): string {
@@ -35,6 +46,8 @@ export class CustomerDetailsComponent implements OnInit, AfterViewInit {
     }    
 
     public ngOnInit(): void {
+        this.setTranslation(this.currentLanguage);
+
         this._route.data
             .subscribe((data: { customer: Customer }) => {
                 this.customer = new FormGroup({
