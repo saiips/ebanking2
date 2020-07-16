@@ -29,7 +29,7 @@
     "core-js": "^2.5.4",
     "crypto-js": "^3.1.9-1",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "materialize-css": "^0.98.0",
     "ng-lz-string": "^1.5.3",
     "ngx-cookie-service": "^2.0.2",
